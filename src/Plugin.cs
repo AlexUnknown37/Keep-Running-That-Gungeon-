@@ -13,7 +13,7 @@ namespace KeepRunning
     {
         public const string Guid = "keeprunning.etg";
         public const string Name = "Keep Running";
-        public const string ModVersion = "0.1.0";
+        public const string ModVersion = "0.4.0";
 
         // Settings, saved in BepInEx/config/keeprunning.etg.cfg.
         public static ConfigEntry<bool> PauseWhenUnfocused;

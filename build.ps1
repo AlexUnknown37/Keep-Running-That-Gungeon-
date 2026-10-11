@@ -51,7 +51,20 @@ Write-Host "Built KeepRunning.dll $version" -ForegroundColor Green
 $stage = "$BinDir\package"
 if (Test-Path $stage) { Remove-Item $stage -Recurse -Force }
 New-Item -ItemType Directory -Force "$stage\plugins" | Out-Null
-Copy-Item "$PackageDir\manifest.json", "$PackageDir\icon.png", "$PackageDir\README.md" $stage
+Copy-Item "$PackageDir\manifest.json", "$PackageDir\README.md" $stage
+
+# Thunderstore requires icon.png at exactly 256x256. The source art can be any size; scale it down here.
+Add-Type -AssemblyName System.Drawing
+$source = [Drawing.Image]::FromFile((Resolve-Path "$PackageDir\icon.png"))
+try {
+    $icon = New-Object Drawing.Bitmap 256, 256
+    $g = [Drawing.Graphics]::FromImage($icon)
+    $g.InterpolationMode = [Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+    $g.DrawImage($source, 0, 0, 256, 256)
+    $g.Dispose()
+    $icon.Save("$stage\icon.png", [Drawing.Imaging.ImageFormat]::Png)
+    $icon.Dispose()
+} finally { $source.Dispose() }
 Copy-Item "$BinDir\KeepRunning.dll" "$stage\plugins"
 
 $zip = "$DistDir\KeepRunning-$version.zip"
