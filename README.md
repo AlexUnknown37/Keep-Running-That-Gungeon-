@@ -1,4 +1,5 @@
 # Keep Running That Gungeon
+Mod on [Thunder Store](https://thunderstore.io/c/enter-the-gungeon/p/GoTeamAlex/Keep_Running/)
 
 A tiny BepInEx mod that stops **Enter the Gungeon** from pausing when you tab out of the game.
 Handy for co-op, streaming, or playing with a second monitor.
