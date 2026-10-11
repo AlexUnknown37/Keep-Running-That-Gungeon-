@@ -1,0 +1,9 @@
+{
+  "name": "Keep_Running",
+  "version_number": "0.1.0",
+  "website_url": "https://github.com/AlexUnknown37/Keep-Running-That-Gungeon-",
+  "description": "Stops Enter the Gungeon from pausing when you tab out. Optionally keeps the sound playing too.",
+  "dependencies": [
+    "BepInEx-BepInExPack_EtG-5.4.2101"
+  ]
+}
